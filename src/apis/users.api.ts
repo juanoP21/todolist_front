@@ -1,6 +1,6 @@
 import { User } from "@/models/user";
 
-const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = "https://todolist-back-production-eb89.up.railway.app";
 
 export async function createusers(user: User) {
   try {

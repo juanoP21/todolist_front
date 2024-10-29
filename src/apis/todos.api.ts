@@ -1,6 +1,6 @@
 import { Todo } from "@/models/todos";
 
-const BACKEND_URL = "http://localhost:4000";
+const BACKEND_URL = "https://todolist-back-production-eb89.up.railway.app";
 
 export const createTodo = async (userId: number, createTodo: Todo) => {
   try {
@@ -40,45 +40,6 @@ export const findAll = async (userId: number) => {
   }
 };
 
-export const findAllTodosByUserIdCompleted = async (userId: number) => {
-  try {
-    const response = await fetch(
-      `${BACKEND_URL}/todo/findAllCompleted/${userId}`,
-      {
-        method: "GET",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Error fetching completed todos");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching completed todos:", error);
-    throw error;
-  }
-};
-
-export const findAllTodosByUserIdNotCompleted = async (userId: number) => {
-  try {
-    const response = await fetch(
-      `${BACKEND_URL}/todo/findAllNotCompleted/${userId}`,
-      {
-        method: "GET",
-      }
-    );
-
-    if (!response.ok) {
-      throw new Error("Error fetching not completed todos");
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching not completed todos:", error);
-    throw error;
-  }
-};
 
 export const findOneTodo = async (id: number, idtodo: number) => {
   try {
