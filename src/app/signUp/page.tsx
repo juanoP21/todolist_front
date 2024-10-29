@@ -15,11 +15,13 @@ function SignUp() {
   const [error, setError] = useState("");
 
   const onSubmit = handleSubmit(async (data) => {
+    // Validar que las contraseñas coincidan
     if (data.password !== data.confirmPassword) {
       return alert("Passwords do not match");
     }
 
     const response = await createusers({
+      // Enviar los datos al backend para crear el usuario
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,

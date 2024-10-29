@@ -15,11 +15,12 @@ function LoginPage() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      //hacemos la peticion al backend para iniciar sesion
       const res = await signIn({
         email: data.email,
         password: data.password,
       });
-
+//si la respuesta es correcta, guardamos el token en el localstorage y en una cookie
       const token = res.access_token;
       if (token) {
         localStorage.setItem("token", token);

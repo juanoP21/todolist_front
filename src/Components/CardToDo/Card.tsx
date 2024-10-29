@@ -9,7 +9,7 @@ interface TaskCardProps {
   description: string;
   dateend: string;
   state: "pendiente" | "en progreso" | "completada";
-  deleteTask: (id: number) => void;
+  deleteTask: (id: number) => void;// con esta manejamos los cambios en el estado de la tarea
 }
 
 const Card = (props: TaskCardProps) => {
@@ -17,7 +17,6 @@ const Card = (props: TaskCardProps) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Configura useForm para el modal de edición
   const {
     register,
     handleSubmit,
@@ -32,7 +31,7 @@ const Card = (props: TaskCardProps) => {
   });
 
   useEffect(() => {
-    // Prellenar los valores del formulario cuando se abra el modal
+    // Prellenar los valores del formulario cuando se abra la ventana
     setValue("title", title);
     setValue("description", description);
     setValue("state", state);
@@ -40,6 +39,7 @@ const Card = (props: TaskCardProps) => {
 
   const handleDelete = async () => {
     try {
+      // Eliminar la tarea en la base de datos
       await removeTodo(iduser, id);
       deleteTask(id);
     } catch (error) {
@@ -51,6 +51,7 @@ const Card = (props: TaskCardProps) => {
     setIsModalOpen(true); 
   };
   const formatDate = (dateString: string): string => {
+    // Formatear la fecha en formato "YYYY-MM-DD" a "DD/MM/YYYY"
     const year = parseInt(dateString.slice(0, 4), 10);
     const month = parseInt(dateString.slice(4, 6), 10) - 1; // Los meses en JS van de 0 a 11
     const day = parseInt(dateString.slice(6, 8), 10);
@@ -58,6 +59,7 @@ const Card = (props: TaskCardProps) => {
     return date.toLocaleDateString(); // Ajusta el formato según la configuración regional
   };
   const onSubmit = async (data: any) => {
+    // Actualizar la tarea en la base de datos 
     const formattedData = { ...data };
     try {
       await updateTodo(iduser, id, formattedData);

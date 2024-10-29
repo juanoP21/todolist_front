@@ -13,6 +13,7 @@ const todo = () => {
   const [showTaskModal, setShowTaskModal] = useState(false);
 
   const getAlldTodos = async () => {
+    //obtenemos el id del usuario logueado y lo guardamos en una variable 
     const userId = getLoginInfo()?.id;
     if (userId != null) {
       try {
@@ -30,6 +31,7 @@ const todo = () => {
   };
 
   const longout = () => {
+    //limpiamos el localstorage y la cookie y redirigimos al login
     localStorage.clear();
     destroyCookie(null, "authToken", { path: "/" });
     window.location.href = "/login";
@@ -77,7 +79,7 @@ const todo = () => {
           />
         ))}
       </div>
-      {/* <Card /> */}
+      
     </div>
   );
 };

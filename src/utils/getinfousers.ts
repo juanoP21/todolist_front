@@ -8,6 +8,7 @@ interface UserInfo {
 }
 
 export const getLoginInfo = (): UserInfo | null => {
+  //metodo para obtener el token del usuario
   if (typeof window !== "undefined") { // Verifica si estás en el cliente
     const token = localStorage.getItem("token");
     if (token) {

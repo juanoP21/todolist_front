@@ -19,10 +19,12 @@ const CreateToDo = (props: any) => {
   } = useForm<TaskData>();
 
   const onSubmit = handleSubmit(async (data) => {
+    // Formatear la fecha a 'yyyymm
     const formattedDate = data.dateend.replace(/-/g, ""); // Formatear la fecha a 'yyyymmdd'
     const formattedData = { ...data, dateend: formattedDate };
 
     try {
+      // crear la tarea en la base de datos
       const response = await createTodo(props.idUser, formattedData);
       // Verificar si la respuesta es OK
       if (response.status === 201) {
